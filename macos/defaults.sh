@@ -1,4 +1,4 @@
-COMPUTER_NAME="hpgmiskin"
+COMPUTER_NAME="cytera-hpgmiskin"
 
 # Close any open System Preferences panes, to stop settings conflict
 osascript -e 'tell application "System Preferences" to quit'
@@ -18,10 +18,10 @@ done 2>/dev/null &
 ###############################################################################
 
 # Set computer name (as done via System Preferences → Sharing)
-sudo scutil --set ComputerName "$COMPUTER_NAME"
-sudo scutil --set HostName "$COMPUTER_NAME"
-sudo scutil --set LocalHostName "$COMPUTER_NAME"
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
+sudo scutil --set ComputerName "${COMPUTER_NAME}"
+sudo scutil --set LocalHostName "${COMPUTER_NAME}"
+sudo scutil --set HostName "${COMPUTER_NAME}"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "${COMPUTER_NAME}"
 
 # Set language and text formats
 defaults write NSGlobalDomain AppleLanguages -array "en-UK"
@@ -128,10 +128,43 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightC
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
 
-# Trackpad: swipe between pages with three fingers
-defaults write NSGlobalDomain AppleEnableSwipeNavigateWithScrolls -bool true
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerHorizSwipeGesture -int 1
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerHorizSwipeGesture -int 1
+# Trackpad: configure multi finger touch
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.cornerSecondaryClick -int 2
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.fiveFingerPinchGesture -int 2
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFiveFingerPinchGesture -int 2
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.fourFingerHorizSwipeGesture -int 2
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFourFingerHorizSwipeGesture -int 2
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.fourFingerPinchGesture -int 2
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFourFingerPinchGesture -int 2
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.fourFingerVertSwipeGesture -int 2
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFourFingerVertSwipeGesture -int 2
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.handResting -int 1
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadHandResting -int 1
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.horizScroll -int 1
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadHorizScroll -int 1
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.momentumScroll -int 1
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadMomentumScroll -int 1
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.pinch -int 1
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadPinch -int 1
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.rightClick -int 1
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -int 1
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.rotate -int 1
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRotate -int 1
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.scroll -int 1
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadScroll -int 1
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerDrag -int 0
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -int 0
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerHorizSwipeGesture -int 0
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerHorizSwipeGesture -int 0
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerTapGesture -int 0
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerTapGesture -int 0
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerVertSwipeGesture -int 0
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerVertSwipeGesture -int 0
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.twoFingerDoubleTapGesture -int 1
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadTwoFingerDoubleTapGesture -int 1
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.twoFingerFromRightEdgeSwipeGesture -int 3
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadTwoFingerFromRightEdgeSwipeGesture -int 3
 
 # Increase sound quality for Bluetooth headphones/headsets
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
@@ -329,8 +362,7 @@ defaults write com.apple.iCal "first day of week" -int 1
 sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
 
 # Disable Spotlight indexing for any volume that has not been indexed before.
-sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
-# Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
+# sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
 
 # Change indexing order and disable some file types
 defaults write com.apple.spotlight orderedItems -array \
