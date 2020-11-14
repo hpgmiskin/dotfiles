@@ -46,6 +46,7 @@ sudo pmset -a standbydelay 7200
 
 # Menu bar: show battery percentage
 defaults write com.apple.menuextra.battery ShowPercent YES
+# defaults write com.apple.menuextra.battery ShowTime NO
 
 # Disable opening and closing window animations
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
@@ -251,6 +252,19 @@ defaults write com.apple.dock wvous-br-corner -int 0
 defaults write com.Apple.Dock show-recents -bool false
 
 ###############################################################################
+# Safari                                                                        #
+###############################################################################
+
+# Set up Safari for development.
+defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+defaults write com.apple.Safari IncludeDevelopMenu -bool true
+
+# Enable webkit extras
+defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
+defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -bool true
+defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+
+###############################################################################
 # Mail                                                                        #
 ###############################################################################
 
@@ -303,12 +317,21 @@ defaults write com.apple.iCal "first day of week" -int 1
 # Spotlight                                                                   #
 ###############################################################################
 
+# Spotlight menu keyboard shortcut: none
+/usr/libexec/PlistBuddy "$HOME/Library/Preferences/com.apple.symbolichotkeys.plist" -c 'Delete AppleSymbolicHotKeys:64' >/dev/null 2>&1
+/usr/libexec/PlistBuddy "$HOME/Library/Preferences/com.apple.symbolichotkeys.plist" -c 'Add AppleSymbolicHotKeys:64:enabled bool false'
+
+# Spotlight window keyboard shortcut: none
+/usr/libexec/PlistBuddy "$HOME/Library/Preferences/com.apple.symbolichotkeys.plist" -c 'Delete AppleSymbolicHotKeys:65' >/dev/null 2>&1
+/usr/libexec/PlistBuddy "$HOME/Library/Preferences/com.apple.symbolichotkeys.plist" -c 'Add AppleSymbolicHotKeys:65:enabled bool false'
+
 # Hide Spotlight tray-icon (and subsequent helper)
-#sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
-# Disable Spotlight indexing for any volume that gets mounted and has not yet
-# been indexed before.
-# Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
+sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
+
+# Disable Spotlight indexing for any volume that has not been indexed before.
 sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
+# Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
+
 # Change indexing order and disable some file types
 defaults write com.apple.spotlight orderedItems -array \
     '{"enabled" = 1;"name" = "APPLICATIONS";}' \
