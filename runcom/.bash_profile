@@ -8,13 +8,13 @@ READLINK=$(which greadlink 2>/dev/null || which readlink)
 CURRENT_SCRIPT=$BASH_SOURCE
 
 if [[ -n $CURRENT_SCRIPT && -x "$READLINK" ]]; then
-  SCRIPT_PATH=$($READLINK -f "$CURRENT_SCRIPT")
-  DOTFILES_DIR=$(dirname "$(dirname "$SCRIPT_PATH")")
+    SCRIPT_PATH=$($READLINK -f "$CURRENT_SCRIPT")
+    DOTFILES_DIR=$(dirname "$(dirname "$SCRIPT_PATH")")
 elif [ -d "$HOME/.dotfiles" ]; then
-  DOTFILES_DIR="$HOME/.dotfiles"
+    DOTFILES_DIR="$HOME/.dotfiles"
 else
-  echo "Unable to find dotfiles, exiting."
-  return
+    echo "Unable to find dotfiles, exiting."
+    return
 fi
 
 # Make utilities available
@@ -23,14 +23,14 @@ PATH="$DOTFILES_DIR/bin:$PATH"
 
 # Source the dotfiles (order matters)
 
-for DOTFILE in "$DOTFILES_DIR"/system/.{function,function_*,path,env,alias,grep,prompt,nvm,completion,fix,custom}; do
-  [ -f "$DOTFILE" ] && . "$DOTFILE"
+for DOTFILE in "$DOTFILES_DIR"/system/.{function,function_*,path,env,alias,grep,prompt,nvm,pyenv,completion,fix,custom}; do
+    [ -f "$DOTFILE" ] && . "$DOTFILE"
 done
 
 if is-macos; then
-  for DOTFILE in "$DOTFILES_DIR"/system/.{env,alias,function,path}.macos; do
-    [ -f "$DOTFILE" ] && . "$DOTFILE"
-  done
+    for DOTFILE in "$DOTFILES_DIR"/system/.{env,alias,function,path}.macos; do
+        [ -f "$DOTFILE" ] && . "$DOTFILE"
+    done
 fi
 
 # Set LSCOLORS
@@ -42,9 +42,9 @@ eval "$(dircolors -b "$DOTFILES_DIR"/system/.dir_colors)"
 DOTFILES_EXTRA_DIR="$HOME/.extra"
 
 if [ -d "$DOTFILES_EXTRA_DIR" ]; then
-  for EXTRAFILE in "$DOTFILES_EXTRA_DIR"/runcom/*.sh; do
-    [ -f "$EXTRAFILE" ] && . "$EXTRAFILE"
-  done
+    for EXTRAFILE in "$DOTFILES_EXTRA_DIR"/runcom/*.sh; do
+        [ -f "$EXTRAFILE" ] && . "$EXTRAFILE"
+    done
 fi
 
 # Clean up
