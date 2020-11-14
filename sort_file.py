@@ -36,7 +36,7 @@ def sort_lines_by_block(lines):
             block = blocks[-1]
             block.append(line)
     sorted_blocks = [
-        sorted(block, key=lambda line:line.lower())
+        sorted(set(block), key=lambda line:line.lower())
         for block in blocks
     ]
     sorted_lines = []
