@@ -1,4 +1,4 @@
-COMPUTER_NAME="cytera-hpgmiskin"
+COMPUTER_NAME="hpgmiskin"
 
 # Close any open System Preferences panes, to stop settings conflict
 osascript -e 'tell application "System Preferences" to quit'
@@ -116,6 +116,9 @@ defaults write com.apple.BezelServices kDimTime -int 300
 # Trackpad, mouse, Bluetooth accessories                                      #
 ###############################################################################
 
+# Trackpad: Increase speed of movement
+deafults -currentHost write com.apple.trackpad.scaling -float 2
+
 # Trackpad: enable tap to click for this user and for the login screen
 defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
@@ -129,42 +132,32 @@ defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClic
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
 
 # Trackpad: configure multi finger touch
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.cornerSecondaryClick -int 2
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.fiveFingerPinchGesture -int 2
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFiveFingerPinchGesture -int 2
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.fourFingerHorizSwipeGesture -int 2
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFourFingerHorizSwipeGesture -int 2
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.fourFingerPinchGesture -int 2
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFourFingerPinchGesture -int 2
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.fourFingerVertSwipeGesture -int 2
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFourFingerVertSwipeGesture -int 2
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.handResting -int 1
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadHandResting -int 1
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.horizScroll -int 1
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadHorizScroll -int 1
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.momentumScroll -int 1
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadMomentumScroll -int 1
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.pinch -int 1
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadPinch -int 1
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.rightClick -int 1
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -int 1
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.rotate -int 1
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRotate -int 1
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.scroll -int 1
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadScroll -int 1
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerDrag -int 0
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -int 0
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerHorizSwipeGesture -int 0
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerHorizSwipeGesture -int 0
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerTapGesture -int 0
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerTapGesture -int 0
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerVertSwipeGesture -int 0
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerVertSwipeGesture -int 0
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.twoFingerDoubleTapGesture -int 1
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadTwoFingerDoubleTapGesture -int 1
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.twoFingerFromRightEdgeSwipeGesture -int 3
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadTwoFingerFromRightEdgeSwipeGesture -int 3
+defaults -currentUser write com.apple.AppleMultitouchTrackpad ActuateDetents -int 0
+defaults -currentUser write com.apple.AppleMultitouchTrackpad Clicking -int 1
+defaults -currentUser write com.apple.AppleMultitouchTrackpad DragLock -int 0
+defaults -currentUser write com.apple.AppleMultitouchTrackpad Dragging -int 0
+defaults -currentUser write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 2
+defaults -currentUser write com.apple.AppleMultitouchTrackpad ForceSuppressed -int 1
+defaults -currentUser write com.apple.AppleMultitouchTrackpad SecondClickThreshold -int 2
+defaults -currentUser write com.apple.AppleMultitouchTrackpad TrackpadCornerSecondaryClick -int 0
+defaults -currentUser write com.apple.AppleMultitouchTrackpad TrackpadFiveFingerPinchGesture -int 2
+defaults -currentUser write com.apple.AppleMultitouchTrackpad TrackpadFourFingerHorizSwipeGesture -int 2
+defaults -currentUser write com.apple.AppleMultitouchTrackpad TrackpadFourFingerPinchGesture -int 2
+defaults -currentUser write com.apple.AppleMultitouchTrackpad TrackpadFourFingerVertSwipeGesture -int 2
+defaults -currentUser write com.apple.AppleMultitouchTrackpad TrackpadHandResting -int 1
+defaults -currentUser write com.apple.AppleMultitouchTrackpad TrackpadHorizScroll -int 1
+defaults -currentUser write com.apple.AppleMultitouchTrackpad TrackpadMomentumScroll -int 1
+defaults -currentUser write com.apple.AppleMultitouchTrackpad TrackpadPinch -int 1
+defaults -currentUser write com.apple.AppleMultitouchTrackpad TrackpadRightClick -int 1
+defaults -currentUser write com.apple.AppleMultitouchTrackpad TrackpadRotate -int 1
+defaults -currentUser write com.apple.AppleMultitouchTrackpad TrackpadScroll -int 1
+defaults -currentUser write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -int 1
+defaults -currentUser write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerHorizSwipeGesture -int 0
+defaults -currentUser write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerTapGesture -int 2
+defaults -currentUser write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerVertSwipeGesture -int 0
+defaults -currentUser write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerDoubleTapGesture -int 1
+defaults -currentUser write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerFromRightEdgeSwipeGesture -int 3
+defaults -currentUser write com.apple.AppleMultitouchTrackpad USBMouseStopsTrackpad -int 0
 
 # Increase sound quality for Bluetooth headphones/headsets
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
