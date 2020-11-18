@@ -3,8 +3,13 @@ hs.grid.setMargins("0,0")
 hs.window.animationDuration = 0
 
 function getWin()
-  return hs.window.focusedWindow()
+  local win = hs.window.focusedWindow()
+  if not win then win = hs.window.frontmostWindow() end
+  return win
 end
+
+-- get current window and alert
+hs.hotkey.bind(mash, "=", function() hs.alert.show(getWin()); end)
 
 --- arrows: move window
 hs.hotkey.bind(mash, "left", function() hs.grid.pushWindowLeft() end)
@@ -19,6 +24,7 @@ hs.hotkey.bind(mash, "j", function() hs.grid.resizeWindowThinner() end)
 hs.hotkey.bind(mash, "l", function() hs.grid.resizeWindowWider() end)
 
 --- 234: resize grid
+hs.hotkey.bind(mash, "1", function() hs.grid.setGrid('2x1'); hs.alert.show('Grid set to 2x1'); end)
 hs.hotkey.bind(mash, "2", function() hs.grid.setGrid('2x2'); hs.alert.show('Grid set to 2x2'); end)
 hs.hotkey.bind(mash, "3", function() hs.grid.setGrid('3x3'); hs.alert.show('Grid set to 3x3'); end)
 hs.hotkey.bind(mash, "4", function() hs.grid.setGrid('4x4'); hs.alert.show('Grid set to 4x4'); end)
