@@ -1,4 +1,13 @@
-COMPUTER_NAME="hpgmiskin"
+# Set computer from positional or env
+COMPUTER_NAME=${1:-${COMPUTER_NAME:-}}
+
+# Print the computer name being used
+if [[ ${COMPUTER_NAME} ]]; then
+    echo "Using computer name ${COMPUTER_NAME}"
+else
+    echo "No computer name specified!"
+    exit 1
+fi
 
 # Close any open System Preferences panes, to stop settings conflict
 osascript -e 'tell application "System Preferences" to quit'
@@ -112,6 +121,10 @@ defaults write com.apple.BezelServices kDimTime -int 300
 # Disable auto-correct
 # defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
+# Disable dictation hotkeys
+/usr/libexec/PlistBuddy "$HOME/Library/Preferences/com.apple.symbolichotkeys.plist" -c 'Delete AppleSymbolicHotKeys:164' >/dev/null 2>&1
+/usr/libexec/PlistBuddy "$HOME/Library/Preferences/com.apple.symbolichotkeys.plist" -c 'Add AppleSymbolicHotKeys:164:enabled bool false'
+
 ###############################################################################
 # Trackpad, mouse, Bluetooth accessories                                      #
 ###############################################################################
@@ -167,8 +180,8 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 ###############################################################################
 
 # Require password immediately after sleep or screen saver begins
-# defaults write com.apple.screensaver askForPassword -int 1
-# defaults write com.apple.screensaver askForPasswordDelay -int 0
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # Save screenshots to the desktop
 defaults write com.apple.screencapture location -string "${HOME}/Desktop"
@@ -187,7 +200,7 @@ defaults write NSGlobalDomain AppleFontSmoothing -int 2
 ###############################################################################
 
 # Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons
-# defaults write com.apple.finder QuitMenuItem -bool true
+defaults write com.apple.finder QuitMenuItem -bool true
 
 # Finder: disable window animations and Get Info animations
 defaults write com.apple.finder DisableAllAnimations -bool true

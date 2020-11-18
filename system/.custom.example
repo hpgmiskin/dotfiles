@@ -1,0 +1,10 @@
+# Computer name should be private
+export COMPUTER_NAME="my-computer-name"
+
+# NPM Token should be kept private
+export NPM_TOKEN="private-token"
+
+# Setup git details for this computer
+git config --global user.name "Name"
+git config --global user.email "email"
+git config --global github.user "username"
