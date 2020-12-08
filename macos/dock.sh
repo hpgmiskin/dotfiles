@@ -27,4 +27,6 @@ dockutil --no-restart --add "/System/Applications/System Preferences.app"
 dockutil --no-restart --add "/System/Applications/Utilities/Activity Monitor.app"
 dockutil --no-restart --add "/System/Applications/Utilities/Console.app"
 
+dockutil --no-restart --add "${HOME}/Applications/Brave Browser Apps.localized/Roam Research.app"
+
 killall Dock

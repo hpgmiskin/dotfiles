@@ -1,2 +1,6 @@
-# Load pyenv automatically
+
+# Load python env automatically
 eval "$(pyenv init -)"
+
+# Always install venv in project
+PIPENV_VENV_IN_PROJECT=1

@@ -1,0 +1,6 @@
+
+# Initialize ruby env
+eval "$(rbenv init -)"
+
+# Configure rubyenv to work with updated openssl
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl)"

@@ -4,6 +4,7 @@ tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 
 cask "1password"
+cask "iglance"
 cask "adoptopenjdk8"
 cask "alfred"
 cask "balenaetcher"

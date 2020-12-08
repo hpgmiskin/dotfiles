@@ -48,7 +48,7 @@ sudo pmset -a standbydelay 7200
 # sudo pmset -a sms 0
 
 # Disable audio feedback when volume is changed
-# defaults write com.apple.sound.beep.feedback -bool false
+defaults write com.apple.sound.beep.feedback -bool true
 
 # Disable the sound effects on boot
 # sudo nvram SystemAudioVolume=" "
@@ -174,6 +174,16 @@ defaults -currentUser write com.apple.AppleMultitouchTrackpad USBMouseStopsTrack
 
 # Increase sound quality for Bluetooth headphones/headsets
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+
+###############################################################################
+# Touchbar                                                                    #
+###############################################################################
+
+defaults write com.apple.controlstrip MiniCustomized -array \
+            "com.apple.system.brightness" \
+            "com.apple.system.volume" \
+            "com.apple.system.mute" \
+            "com.apple.system.media-play-pause"
 
 ###############################################################################
 # Screen                                                                      #
