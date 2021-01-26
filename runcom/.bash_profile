@@ -23,9 +23,17 @@ PATH="$DOTFILES_DIR/bin:$PATH"
 
 # Source the dotfiles (order matters)
 
-for DOTFILE in "$DOTFILES_DIR"/system/.{function,function_*,path,env,alias,grep,prompt,nvm,pyenv,rbenv,completion,fix,custom}; do
+for DOTFILE in "$DOTFILES_DIR"/system/.{function,function_*,path,env,alias,grep,prompt,completion,fix,custom}; do
     [ -f "$DOTFILE" ] && . "$DOTFILE"
 done
+
+# Custom source files
+
+for DOTFILE in "$DOTFILES_DIR"/system/.{nvm,pyenv,rbenv}; do
+    [ -f "$DOTFILE" ] && . "$DOTFILE"
+done
+
+# Mac specific source files
 
 if is-macos; then
     for DOTFILE in "$DOTFILES_DIR"/system/.{env,alias,function,path}.macos; do
@@ -46,6 +54,12 @@ if [ -d "$DOTFILES_EXTRA_DIR" ]; then
         [ -f "$EXTRAFILE" ] && . "$EXTRAFILE"
     done
 fi
+
+# Configure bash completion
+
+#  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+#     . $(brew --prefix)/etc/bash_completion
+#  fi
 
 # Clean up
 

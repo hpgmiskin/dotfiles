@@ -6,25 +6,25 @@ It mainly targets macOS systems, but it works on at least Ubuntu as well.
 
 ## Highlights
 
-- Minimal efforts to install everything, using a [Makefile](./Makefile)
-- Mostly based around Homebrew, Caskroom and Node.js, latest Bash + GNU Utils
-- Great [Window management](./config/hammerspoon/README.md) (using Hammerspoon)
-- Fast and colored prompt
-- Updated macOS defaults
-- Well-organized and easy to customize
-- The installation and runcom setup is
-  [tested weekly on real Ubuntu and macOS machines](https://github.com/webpro/dotfiles/actions) using
-  [a GitHub Action](./.github/workflows/ci.yml)
+-   Minimal efforts to install everything, using a [Makefile](./Makefile)
+-   Mostly based around Homebrew, Caskroom and Node.js, latest Bash + GNU Utils
+-   Great [Window management](./config/hammerspoon/README.md) (using Hammerspoon)
+-   Fast and colored prompt
+-   Updated macOS defaults
+-   Well-organized and easy to customize
+-   The installation and runcom setup is
+    [tested weekly on real Ubuntu and macOS machines](https://github.com/webpro/dotfiles/actions) using
+    [a GitHub Action](./.github/workflows/ci.yml)
 
 ## Packages Overview
 
-- [Homebrew](https://brew.sh) (packages: [Brewfile](./install/Brewfile))
-- [homebrew-cask](https://github.com/Homebrew/homebrew-cask) (packages: [Caskfile](./install/Caskfile))
-- [Node.js + npm LTS](https://nodejs.org/en/download/) (packages: [npmfile](./install/npmfile))
-- Latest Git, Bash 4, Python 3, GNU coreutils, curl, Ruby
-- [Hammerspoon](https://www.hammerspoon.org) (config: [keybindings & window management](./config/hammerspoon))
-- [Mackup](https://github.com/lra/mackup) (sync application settings)
-- `$EDITOR` (and Git editor) is [GNU nano](https://www.nano-editor.org)
+-   [Homebrew](https://brew.sh) (packages: [Brewfile](./install/Brewfile))
+-   [homebrew-cask](https://github.com/Homebrew/homebrew-cask) (packages: [Caskfile](./install/Caskfile))
+-   [Node.js + npm LTS](https://nodejs.org/en/download/) (packages: [npmfile](./install/npmfile))
+-   Latest Git, Bash 4, Python 3, GNU coreutils, curl, Ruby
+-   [Hammerspoon](https://www.hammerspoon.org) (config: [keybindings & window management](./config/hammerspoon))
+-   [Mackup](https://github.com/lra/mackup) (sync application settings)
+-   `$EDITOR` (and Git editor) is [GNU nano](https://www.nano-editor.org)
 
 ## Installation
 
@@ -64,12 +64,12 @@ The installation process in the Makefile is tested on every push and every week 
 
 ## Post-Installation
 
-- `dotfiles dock` (set [Dock items](./macos/dock.sh))
-- `dotfiles macos` (set [macOS defaults](./macos/defaults.sh))
-- Mackup
-  - Log in to Dropbox (and wait until synced)
-  - `ln -s ~/.config/mackup/.mackup.cfg ~` (until [#632](https://github.com/lra/mackup/pull/632) is fixed)
-  - `mackup restore`
+-   `dotfiles dock` (set [Dock items](./macos/dock.sh))
+-   `dotfiles macos` (set [macOS defaults](./macos/defaults.sh))
+-   Mackup
+    -   Log in to Dropbox (and wait until synced)
+    -   `ln -s ~/.config/mackup/.mackup.cfg ~` (until [#632](https://github.com/lra/mackup/pull/632) is fixed)
+    -   `mackup restore`
 
 ## The `dotfiles` command
 
@@ -95,13 +95,17 @@ You can put your custom settings, such as Git credentials in the `system/.custom
 Alternatively, you can have an additional, personal dotfiles repo at `~/.extra`. The runcom `.bash_profile` sources all
 `~/.extra/runcom/*.sh` files.
 
+## Bash completion
+
+[Command-line completion | Docker Documentation](https://docs.docker.com/compose/completion/)
+
 ## Additional Resources
 
-- [Awesome Dotfiles](https://github.com/webpro/awesome-dotfiles)
-- [Homebrew](https://brew.sh)
-- [Homebrew Cask](https://github.com/Homebrew/homebrew-cask)
-- [Bash prompt](https://wiki.archlinux.org/index.php/Color_Bash_Prompt)
-- [Solarized Color Theme for GNU ls](https://github.com/seebi/dircolors-solarized)
+-   [Awesome Dotfiles](https://github.com/webpro/awesome-dotfiles)
+-   [Homebrew](https://brew.sh)
+-   [Homebrew Cask](https://github.com/Homebrew/homebrew-cask)
+-   [Bash prompt](https://wiki.archlinux.org/index.php/Color_Bash_Prompt)
+-   [Solarized Color Theme for GNU ls](https://github.com/seebi/dircolors-solarized)
 
 ## Credits
 
