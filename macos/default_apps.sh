@@ -14,7 +14,7 @@ VSCODE_EXTENSIONS=(
 associate_extensions(){
     for extension in ${extensions[@]}; do
         echo "use ${app_id} for ${extension} files"
-        # duti -s "${app_id}" "${extension}" all
+        duti -s "${app_id}" "${extension}" all
     done
 }
 

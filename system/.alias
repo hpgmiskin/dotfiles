@@ -22,8 +22,8 @@ fi
 
 # Git alias
 
-alias gitpull='((git checkout develop && git pull origin develop) || true) && git checkout main && git pull origin main'
-alias gitfetch='BRANCH=$(git rev-parse --abbrev-ref HEAD) && git fetch --all --prune && git stash && gitpull && git checkout $BRANCH && git stash pop'
+alias gitfetch='git fetch --all --prune; git fetch origin develop:develop; git fetch origin main:main; git fetch origin master:master'
+alias gitrebase='git stash --include-untracked && gitfetch && git rebase develop && git stash show'
 alias gitlog='git log --graph --oneline --color --decorate --all'
 
 # List declared aliases, functions, paths
