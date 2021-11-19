@@ -9,6 +9,8 @@ VSCODE_EXTENSIONS=(
     .txt
     .json
     .py
+    .toml
+    .lock
 )
 
 associate_extensions(){
