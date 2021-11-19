@@ -1,4 +1,4 @@
-hs.grid.setGrid'3x3'
+hs.grid.setGrid'2x1'
 hs.grid.setMargins("0,0")
 hs.window.animationDuration = 0
 
@@ -7,6 +7,25 @@ function getWin()
   if not win then win = hs.window.frontmostWindow() end
   return win
 end
+
+function zoomDisplay()
+
+    local zoomWindow = hs.window.get("Zoom Meeting")
+    local activeWindow = hs.window.focusedWindow()
+    local screen = activeWindow:screen()
+
+    -- TODO: Get window ratio
+
+    zoomWindow:moveToScreen(screen)
+    zoomWindow:move(screen:fromUnitRect(0,0,1,0.36))
+    zoomWindow:raise()
+
+    activeWindow:move(screen:fromUnitRect(0,0.36,1,0.64))
+
+    hs.alert("zoom")
+
+  end
+
 
 -- get current window and alert
 hs.hotkey.bind(mash, "=", function() hs.alert.show(getWin()); end)
@@ -23,11 +42,13 @@ hs.hotkey.bind(mash, "k", function() hs.grid.resizeWindowTaller() end)
 hs.hotkey.bind(mash, "j", function() hs.grid.resizeWindowThinner() end)
 hs.hotkey.bind(mash, "l", function() hs.grid.resizeWindowWider() end)
 
+--- ikjl: resize window
+hs.hotkey.bind(mash, "z", function() zoomDisplay(); end)
+
 --- 234: resize grid
-hs.hotkey.bind(mash, "1", function() hs.grid.setGrid('2x1'); hs.alert.show('Grid set to 2x1'); end)
-hs.hotkey.bind(mash, "2", function() hs.grid.setGrid('2x2'); hs.alert.show('Grid set to 2x2'); end)
-hs.hotkey.bind(mash, "3", function() hs.grid.setGrid('3x3'); hs.alert.show('Grid set to 3x3'); end)
-hs.hotkey.bind(mash, "4", function() hs.grid.setGrid('4x4'); hs.alert.show('Grid set to 4x4'); end)
+hs.hotkey.bind(mash, "1", function() hs.grid.setGrid('1x1'); hs.alert.show('Grid set to 1x1'); end)
+hs.hotkey.bind(mash, "2", function() hs.grid.setGrid('2x1'); hs.alert.show('Grid set to 2x1'); end)
+hs.hotkey.bind(mash, "3", function() hs.grid.setGrid('3x1'); hs.alert.show('Grid set to 3x1'); end)
 
 --- /: move window to next screen
 hs.hotkey.bind(mash, "/", function() local win = getWin(); win:moveToScreen(win:screen():next()) end)
