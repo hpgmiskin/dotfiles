@@ -6,7 +6,11 @@ VSCODE_EXTENSIONS=(
     .cpp
     .hpp
     .js
+    .jsx
+    .json
+    .mjs
     .ts
+    .mts
     .log
     .txt
     .json

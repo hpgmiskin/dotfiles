@@ -47,8 +47,10 @@ hs.hotkey.bind(mash, "z", function() zoomDisplay(); end)
 
 --- 234: resize grid
 hs.hotkey.bind(mash, "1", function() hs.grid.setGrid('1x1'); hs.alert.show('Grid set to 1x1'); end)
-hs.hotkey.bind(mash, "2", function() hs.grid.setGrid('2x1'); hs.alert.show('Grid set to 2x1'); end)
-hs.hotkey.bind(mash, "3", function() hs.grid.setGrid('3x1'); hs.alert.show('Grid set to 3x1'); end)
+hs.hotkey.bind(mash, "2", function() hs.grid.setGrid('2x2'); hs.alert.show('Grid set to 2x2'); end)
+hs.hotkey.bind(mash, "3", function() hs.grid.setGrid('3x3'); hs.alert.show('Grid set to 3x3'); end)
+hs.hotkey.bind(mash, "4", function() hs.grid.setGrid('4x4'); hs.alert.show('Grid set to 4x4'); end)
+hs.hotkey.bind(mash, "5", function() hs.grid.setGrid('5x5'); hs.alert.show('Grid set to 5x5'); end)
 
 --- /: move window to next screen
 hs.hotkey.bind(mash, "/", function() local win = getWin(); win:moveToScreen(win:screen():next()) end)

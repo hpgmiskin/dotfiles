@@ -14,10 +14,10 @@ alias psgrep="psgrep -i"
 # Global aliases
 
 if $(is-supported "alias -g"); then
-  alias -g G="| grep -i"
-  alias -g H="| head"
-  alias -g T="| tail"
-  alias -g L="| less"
+    alias -g G="| grep -i"
+    alias -g H="| head"
+    alias -g T="| tail"
+    alias -g L="| less"
 fi
 
 # Git alias
@@ -68,7 +68,7 @@ alias ipl="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([
 # Request using GET, POST, etc. method
 
 for METHOD in GET HEAD POST PUT DELETE TRACE OPTIONS; do
-  alias "$METHOD"="lwp-request -m '$METHOD'"
+    alias "$METHOD"="lwp-request -m '$METHOD'"
 done
 unset METHOD
 

@@ -1,57 +1,84 @@
 # Switch long/short prompt
 
 ps0() {
-  unset PROMPT_COMMAND
-  PS1='$ '
+    unset PROMPT_COMMAND
+    PS1='$ '
 }
 
 ps1() {
-  source "$DOTFILES_DIR"/system/.prompt
+    source "$DOTFILES_DIR"/system/.prompt
 }
 
 # Get named var (usage: get "VAR_NAME")
 
 get() {
-  echo "${!1}"
+    echo "${!1}"
 }
 
 # Add to path
 
 prepend-path() {
-  [ -d $1 ] && PATH="$1:$PATH"
+    [ -d $1 ] && PATH="$1:$PATH"
 }
 
 # Show 256 TERM colors
 
 colors() {
-  local X=$(tput op)
-  local Y=$(printf %$((COLUMNS-6))s)
-  for i in {0..256}; do
-  o=00$i;
-  echo -e ${o:${#o}-3:3} $(tput setaf $i;tput setab $i)${Y// /=}$X;
-  done
+    local X=$(tput op)
+    local Y=$(printf %$((COLUMNS - 6))s)
+    for i in {0..256}; do
+        o=00$i
+        echo -e ${o:${#o}-3:3} $(
+            tput setaf $i
+            tput setab $i
+        )${Y// /=}$X
+    done
 }
 
 # Calculator
 
 calc() {
-  echo "$*" | bc -l;
+    echo "$*" | bc -l
 }
 
 # Weather
 
 meteo() {
-  local LOCALE=$(echo ${LANG:-en} | cut -c1-2)
-  if [ $# -eq 0 ]; then
-    local LOCATION=$(curl -s ipinfo.io/loc)
-  else
-    local LOCATION=$1
-  fi
-  curl -s "$LOCALE.wttr.in/$LOCATION"
+    local LOCALE=$(echo ${LANG:-en} | cut -c1-2)
+    if [ $# -eq 0 ]; then
+        local LOCATION=$(curl -s ipinfo.io/loc)
+    else
+        local LOCATION=$1
+    fi
+    curl -s "$LOCALE.wttr.in/$LOCATION"
 }
 
 # Markdown
 
 md() {
-  pandoc $1 | lynx -stdin -dump
+    pandoc $1 | lynx -stdin -dump
+}
+
+# iTerm
+
+write-noline() {
+    osascript -e "tell application \"iTerm2\" to tell current window to tell current session to write text \"${@}\" newline NO"
+}
+
+dev-mode() {
+
+    # Open tabs for device
+    open ~/Code/device -a iterm
+    open ~/Code/device/services/controller -a iterm && write-noline "yarn run dev"
+    open ~/Code/device/services/imaging -a iterm && write-noline "poetry run dev"
+
+    # Open tabs for server and app
+    open ~/Code/server -a iterm && write-noline "yarn run dev"
+    open ~/Code/server -a iterm && write-noline "yarn test-local-speedy"
+    open ~/Code/app -a iterm && write-noline "yarn run dev"
+
+    # Open tabs for protocols
+    open ~/Code/device-communication -a iterm
+    open ~/Code/protocols -a iterm && write-noline "yarn build --watch"
+    open ~/Code/protocols -a iterm
 }
